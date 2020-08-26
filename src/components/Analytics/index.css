@@ -1,0 +1,23 @@
+body {
+    background-color: #eee;
+}
+
+.task-1 {
+    margin: 20px;
+}
+
+.dataReceiver {
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.statCalculator {
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+}
