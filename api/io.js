@@ -6,6 +6,7 @@ module.exports = function (io, app) {
         });
         socket.on('message', function (text) {
             console.log('[MESSAGE] ', text);
+            io.sockets.emit('message', text);
         });
     });
 };

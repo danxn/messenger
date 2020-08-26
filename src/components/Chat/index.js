@@ -87,25 +87,54 @@ class Chat extends Component {
     super(props);
 
     this.state = {
+      name: 'User1',
+      avatar: 'U1',
       messageText: 'Lorem ipsum dolor set amet',
       users: [
         {
           name: 'Friend 1',
           avatar: 'F1',
           selected: true,
-          messages: [{ name: 'Friend 1', avatar: 'F1', text: 'Hi there' }],
+          messages: [
+            {
+              to: 'Friend 1',
+              toAvatar: 'F1',
+              name: 'User 1',
+              avatar: 'U1',
+              text: 'Hi there',
+              timestamp: 1598439448388,
+            },
+          ],
         },
         {
           name: 'Friend 2',
           avatar: 'F2',
           selected: false,
-          messages: [{ name: 'Friend 2', avatar: 'F2', text: 'Hello' }],
+          messages: [
+            {
+              to: 'Friend 1',
+              toAvatar: 'F1',
+              name: 'User 1',
+              avatar: 'U1',
+              text: 'Hello',
+              timestamp: 1598439492153,
+            },
+          ],
         },
         {
           name: 'Friend 3',
           avatar: 'F3',
           selected: false,
-          messages: [{ name: 'Friend 3', avatar: 'F3', text: 'Hi' }],
+          messages: [
+            {
+              to: 'Friend 1',
+              toAvatar: 'F1',
+              name: 'User 1',
+              avatar: 'U1',
+              text: 'Hi',
+              timestamp: 1598439492153,
+            },
+          ],
         },
       ],
       activeUserName: 'Friend 1',
@@ -113,7 +142,16 @@ class Chat extends Component {
         name: 'Friend 1',
         avatar: 'F1',
         selected: true,
-        messages: [{ name: 'Friend 1', avatar: 'F1', text: 'Hi there' }],
+        messages: [
+          {
+            to: 'Friend 1',
+            toAvatar: 'F1',
+            name: 'User 1',
+            avatar: 'U1',
+            text: 'Hi there',
+            timestamp: 1598439448388,
+          },
+        ],
       },
       progressOn: false,
       connected: false,
@@ -128,11 +166,11 @@ class Chat extends Component {
 
   componentDidMount() {
     this.wsConnect();
-    let chat = localStorage.getItem('chat');
-    if (chat) {
-      console.log('Loading chat history', JSON.parse(chat));
-      this.setState(JSON.parse(chat));
-    }
+    // let chat = localStorage.getItem('chat');
+    // if (chat) {
+    //   console.log('Loading chat history', JSON.parse(chat));
+    //   this.setState(JSON.parse(chat));
+    // }
   }
 
   io = null;
@@ -141,10 +179,40 @@ class Chat extends Component {
     console.log('Connecting to ws://localhost:3001');
     this.io = window['io'].connect('http://localhost:3001');
     this.io.on('connect', () => {
-      this.io.emit('user', 'guest');
+      this.io.emit('user', 'User');
     });
-    this.io.on('data', (message) => {
-      console.log(message);
+    this.io.on('message', (message) => {
+      console.log('[WS MESSAGE]', message);
+      // looking for message in local state
+      let messageExist = false;
+      this.state.users.map((u) => {
+        u.messages.map((m) => {
+          if (m.timestamp === message.timestamp) messageExist = true;
+          return true;
+        });
+        return true;
+      });
+      if (!messageExist) {
+        let users = this.state.users.slice();
+        users.map((u) => {
+          if (u.name === message.to) {
+            u.messages.push(message);
+            this.setState({ users: users });
+
+            if (u.name === this.state.activeUser.name) {
+              let aMsgs = this.state.activeUser.messages.slice();
+              aMsgs.push(message);
+              this.setState({
+                activeUser: {
+                  ...this.state.activeUser,
+                  messages: aMsgs,
+                },
+              });
+            }
+          }
+          return true;
+        });
+      }
     });
   }
 
@@ -180,9 +248,12 @@ class Chat extends Component {
       e.preventDefault();
       console.log('[SEND MESSAGE]', this.state.messageText);
       let msg = {
-        name: this.state.activeUser.name,
-        avatar: this.state.activeUser.avatar,
+        to: this.state.activeUser.name,
+        toAvatar: this.state.activeUser.avatar,
+        name: this.state.name,
+        avatar: this.state.avatar,
         text: e.target.value,
+        timestamp: Date.now(),
       };
       let msgs = this.state.activeUser.messages.slice();
       msgs.push(msg);
@@ -204,7 +275,7 @@ class Chat extends Component {
           users: users,
         },
         () => {
-          this.io.emit('message', { ...msg, sender: 'User' });
+          this.io.emit('message', msg);
           localStorage.setItem('chat', JSON.stringify(this.state));
         }
       );
