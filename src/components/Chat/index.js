@@ -166,11 +166,11 @@ class Chat extends Component {
 
   componentDidMount() {
     this.wsConnect();
-    // let chat = localStorage.getItem('chat');
-    // if (chat) {
-    //   console.log('Loading chat history', JSON.parse(chat));
-    //   this.setState(JSON.parse(chat));
-    // }
+    let chat = localStorage.getItem('chat');
+    if (chat) {
+      console.log('Loading chat history', JSON.parse(chat));
+      this.setState(JSON.parse(chat));
+    }
   }
 
   io = null;
