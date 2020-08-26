@@ -112,8 +112,8 @@ class Chat extends Component {
           selected: false,
           messages: [
             {
-              to: 'Friend 1',
-              toAvatar: 'F1',
+              to: 'Friend 2',
+              toAvatar: 'F2',
               name: 'User 1',
               avatar: 'U1',
               text: 'Hello',
@@ -127,8 +127,8 @@ class Chat extends Component {
           selected: false,
           messages: [
             {
-              to: 'Friend 1',
-              toAvatar: 'F1',
+              to: 'Friend 3',
+              toAvatar: 'F3',
               name: 'User 1',
               avatar: 'U1',
               text: 'Hi',
