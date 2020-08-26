@@ -8,5 +8,11 @@
 
 `yarn start`
 `cd api`
-`yarn start`
+`yarn install`
+
+Create file .env in api folder and write to it:
+`PORT=3001`
+
+Then
+
 `DEBUG=api:* yarn start`
