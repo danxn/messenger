@@ -90,6 +90,11 @@ class Chat extends Component {
       name: 'User1',
       avatar: 'U1',
       messageText: 'Lorem ipsum dolor set amet',
+      messagesTexts: {
+        'Friend 1': '',
+        'Friend 2': '',
+        'Friend 3': '',
+      },
       users: [
         {
           name: 'Friend 1',
@@ -236,11 +241,16 @@ class Chat extends Component {
       activeUserName: user,
       activeUser: activeUser,
       users: users,
+      messageText: this.state.messagesTexts[user],
     });
   }
 
   inputMessage(e) {
-    this.setState({ messageText: e.target.value });
+    let mt = { ...this.state.messagesTexts };
+    mt[this.state.activeUser.name] = e.target.value;
+    this.setState({ messageText: e.target.value, messagesTexts: mt }, () => {
+      console.log(this.state);
+    });
   }
 
   sendMessage(e) {
@@ -265,6 +275,9 @@ class Chat extends Component {
         return u;
       });
 
+      let mt = { ...this.state.messagesTexts };
+      mt[this.state.activeUser.name] = '';
+
       this.setState(
         {
           activeUser: {
@@ -273,6 +286,8 @@ class Chat extends Component {
             avatar: this.state.activeUser.avatar,
           },
           users: users,
+          messageText: '',
+          messagesTexts: mt,
         },
         () => {
           this.io.emit('message', msg);
