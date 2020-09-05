@@ -2,7 +2,6 @@
 import { withStyles } from '@material-ui/styles';
 import React, { Component } from 'react';
 import Cube from '../Cube';
-
 import openSound from '../kbryjr_ui-130.wav';
 import openingSound from '../mk9frs_ui-140.wav';
 
@@ -12,9 +11,15 @@ const styles = (theme) => ({
     display: 'inline-block',
     textAlign: 'left',
     height: 50,
-    width: 50,
+    width: 175,
     verticalAlign: 'top',
     '& svg': { margin: '10px 10px 5px 0px' },
+  },
+  title: {
+    color: '#fff',
+    position: 'absolute',
+    top: 20,
+    left: 45,
   },
   Layer1: { position: 'absolute' },
   collapsedIconBg: { stroke: '#777', strokeWidth: '1px' },
@@ -194,6 +199,7 @@ class Model extends Component {
   contentCube;
   body3DView;
   bodyParams;
+  title;
 
   componentDidMount() {
     this.animateIcon();
@@ -206,10 +212,11 @@ class Model extends Component {
   }
 
   animateIcon() {
-    let Obj = { size: 0 };
+    let Obj = { size: 0, o1: 1 };
     let newSize = 100;
     this.tl.to(Obj, 0.5, {
       size: newSize,
+      o1: 0,
       onStart: function () {
         this.delay(50).then(() => this.openSoundAudio.play());
       }.bind(this),
@@ -230,6 +237,7 @@ class Model extends Component {
           }
         }
         this.p1.style.strokeDasharray = Obj.size * 1.5 + ' 2000';
+        this.title.style.opacity = Obj.o1;
       }.bind(this),
       onComplete: function () {
         this.animateFrame();
@@ -515,7 +523,7 @@ class Model extends Component {
         >
           <Cube
             framed={false}
-            delay={800}
+            delay={2000}
             ref={(cube) => {
               this.contentCube = cube;
             }}
@@ -533,6 +541,14 @@ class Model extends Component {
           </div>
           <div>3D View</div>
         </div>
+        <span
+          className={classes.title}
+          ref={(span) => {
+            this.title = span;
+          }}
+        >
+          3D View
+        </span>
       </div>
     );
   }

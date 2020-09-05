@@ -11,9 +11,15 @@ const styles = (theme) => ({
     display: 'inline-block',
     textAlign: 'left',
     height: 50,
-    width: 50,
+    width: 175,
     verticalAlign: 'top',
     '& svg': { margin: '10px 10px 5px 0px' },
+  },
+  title: {
+    color: '#fff',
+    position: 'absolute',
+    top: 20,
+    left: 45,
   },
   Layer1: { position: 'absolute' },
   collapsedIconBg: { stroke: '#777', strokeWidth: '1px' },
@@ -84,8 +90,9 @@ const styles = (theme) => ({
     top: 11,
     left: 40,
     '& .headerTextChar': {
-      color: '#fff',
-      fontSize: 25,
+      color: '#000', //'#f6f68d',
+      fontSize: 10,
+      lineHeight: '32px',
       fontWeight: 700,
       fontFamily: 'Orbitron',
       opacity: 0,
@@ -153,17 +160,21 @@ class Description extends Component {
 
     this.tl = window['gsap'].timeline({ ...setup, delay: 1 });
     this.tl2 = window['gsap'].timeline({ ...setup, delay: 0 });
+    this.tl3 = window['gsap'].timeline({ ...setup, delay: 0 });
 
     this.openSoundAudio = new Audio(openSound);
+    this.openSoundAudio.volume = '0.5 ';
     this.openingSoundAudio = new Audio(openingSound);
 
     this.animateIcon = this.animateIcon.bind(this);
     this.animateFrame = this.animateFrame.bind(this);
     this.animateHeader = this.animateHeader.bind(this);
+    this.closeWidget = this.closeWidget.bind(this);
   }
 
   tl;
   tl2;
+  tl3;
   svg;
   root;
   svg2;
@@ -181,9 +192,26 @@ class Description extends Component {
   openSoundAudio;
   openingSoundAudio;
   bodyContainer;
+  title;
 
-  componentDidMount() {
+  async componentDidMount() {
+    console.log('[openSoundAudio]', this.openSoundAudio);
     this.animateIcon();
+    this.closeWidget();
+  }
+
+  async closeWidget() {
+    this.delay(7000).then(() => {
+      this.tl3.reverse();
+      console.log(this.state);
+    });
+    this.delay(7000).then(() => {
+      this.tl2.reverse();
+      console.log(JSON.stringify(this.state));
+    });
+    this.delay(8000).then(() => {
+      this.tl.reverse();
+    });
   }
 
   delay(ms) {
@@ -193,12 +221,19 @@ class Description extends Component {
   }
 
   animateIcon() {
-    let Obj = { size: 0 };
+    let Obj = { size: 0, o1: 1 };
     let newSize = 100;
     this.tl.to(Obj, 0.5, {
       size: newSize,
+      o1: 0,
       onStart: function () {
         this.delay(50).then(() => this.openSoundAudio.play());
+        this.setState({ active: false, switching: false });
+        console.log('start');
+      }.bind(this),
+      onReverseComplete: function () {
+        this.setState({ active: false, switching: false });
+        console.log('reverse complete');
       }.bind(this),
       onUpdate: function () {
         if (
@@ -217,9 +252,11 @@ class Description extends Component {
           }
         }
         this.p1.style.strokeDasharray = Obj.size * 1.5 + ' 2000';
+        this.title.style.opacity = Obj.o1;
       }.bind(this),
       onComplete: function () {
         this.animateFrame();
+        console.log('complete');
       }.bind(this),
     });
 
@@ -246,6 +283,17 @@ class Description extends Component {
         this.iconFrame2.style.opacity = 0;
         this.delay(150).then(() => this.openingSoundAudio.play());
       }.bind(this),
+      onReverseComplete: function () {
+        this.p1.style.opacity = '1';
+        this.c1.style.opacity = '0';
+        this.c2.style.opacity = '0';
+        this.c3.style.opacity = '0';
+        this.c4.style.opacity = '0';
+        this.header.style.opacity = 0;
+        this.iconFrame1.style.opacity = 0;
+        this.iconFrame2.style.opacity = 1;
+        this.delay(50).then(() => this.openSoundAudio.play());
+      }.bind(this),
       onUpdate: function () {
         this.svg2.setAttributeNS(null, 'width', svgWidth + Obj.width);
         this.svg2.setAttributeNS(
@@ -259,7 +307,7 @@ class Description extends Component {
         this.c2.setAttributeNS(null, 'x', Obj.width);
         this.c3.setAttributeNS(null, 'x', Obj.width);
         this.header.style.fill = 'rgba(255,255,255,' + Obj.o1 + ')';
-        this.root.style.width = Obj.width + 50 + 'px';
+        if (Obj.width + 50 > 175) this.root.style.width = Obj.width + 50 + 'px';
         this.root.style.marginRight = Obj.mr + 'px';
       }.bind(this),
       onComplete: function () {
@@ -270,6 +318,10 @@ class Description extends Component {
       height: newHeight,
       o2: 0.1,
       o3: 1,
+      onReverseComplete: function () {
+        this.body.style.opacity = 0;
+        this.delay(150).then(() => this.openingSoundAudio.play());
+      }.bind(this),
       onUpdate: function () {
         this.svg2.setAttributeNS(null, 'height', svgHeight + Obj.height);
         this.svg2.setAttributeNS(
@@ -296,17 +348,20 @@ class Description extends Component {
   }
 
   animateHeader() {
-    window['gsap'].to('.headerTextChar', 0.2, {
+    this.tl3.to('.headerTextChar', 0.25, {
       opacity: 1,
+      color: '#fff',
+      fontSize: 25,
       yoyo: true,
       repeat: 0,
       ease: 'power1.inOut',
       delay: 0,
       stagger: {
-        amount: 1.5,
+        amount: 0.5,
         from: '0',
       },
     });
+    this.tl3.play();
   }
 
   render() {
@@ -506,6 +561,14 @@ class Description extends Component {
           </div>
           <div>Description</div>
         </div>
+        <span
+          className={classes.title}
+          ref={(span) => {
+            this.title = span;
+          }}
+        >
+          Description
+        </span>
       </div>
     );
   }

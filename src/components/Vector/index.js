@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
-import Description from './Description';
-import Model from './Model';
-
-import beep from './beep-attention.mp3';
-import beep2 from './xns60z_ui-137.wav';
-import beep3 from './kbryjr_ui-130.wav';
-
-import './index.css';
+import React, { Component } from 'react';
 import Background from './bg_1_1440x900.jpg';
+import './index.css';
+import Widget from './Widget';
+import Cube from './Cube';
+import Notes from './Notes';
 
 const styles = (theme) => ({
   root: {
@@ -50,7 +46,7 @@ const styles = (theme) => ({
     marginTop: 0,
     textTransform: 'uppercase',
     letterSpacing: '3.6px',
-    textIndent: 2,
+    textIndent: 0,
   },
 });
 
@@ -61,35 +57,11 @@ class Vector extends Component {
     this.state = {
       name: 'User1',
     };
-
-    this.audio = new Audio(beep);
-    this.audio2 = new Audio(beep2);
-    this.audio3 = new Audio(beep3);
-
-    this.playSounds = this.playSounds.bind(this);
   }
-
-  audio;
-  audio2;
-  audio3;
 
   componentDidMount() {
     console.log('[GSAP] Loading...', window['gsap']);
     console.log('[THREE] Loading...', window['THREE']);
-
-    // this.playSounds();
-  }
-
-  async playSounds() {
-    await this.delay(1).then(() => this.audio2.play());
-    this.delay(1500).then(() => this.audio.play());
-    this.delay(3000).then(() => this.audio3.play());
-  }
-
-  delay(ms) {
-    return new Promise((resolve, reject) => {
-      setTimeout(resolve, ms);
-    });
   }
 
   render() {
@@ -98,10 +70,55 @@ class Vector extends Component {
     return (
       <div className={classes.root}>
         <p className={classes.para2}>DEMO MODEL v0.01</p>
-        <p className={classes.para3}>Engeneering style UI demo widgets</p>
+        <p className={classes.para3}>
+          <span
+            style={{
+              backgroundColor: '#c4c47e73',
+              display: 'inline-block',
+              paddingLeft: '2px',
+              marginRight: '5px',
+              fontWeight: 600,
+            }}
+          >
+            Engeneering style
+          </span>
+          UI demo widgets
+        </p>
         <div className={classes.topBlock}>
-          <Description />
-          <Model />
+          <Widget
+            title="Description"
+            icon="M6 7 H 20 L 26 12 V 26 H 6 L 6 7 M20 7 L20 12 L26 12 M11 13 L 16 13 M11 17 L 21 17 M11 21 L 21 21"
+            width="300"
+            height="300"
+            version="0.01"
+            revision="00571"
+          />
+          <Widget
+            title="3D View"
+            icon="M16 6 L26 12 L16 18 L6 12 L16 6 M26 12 L26 20 L16 26 L6 20 L6 12 M16 18 L16 26"
+            width="200"
+            height="200"
+            version="0.01"
+            revision="00571"
+          >
+            <Cube
+              framed={false}
+              delay={800}
+              ref={(cube) => {
+                this.contentCube = cube;
+              }}
+            />
+          </Widget>
+          <Widget
+            title="Notes"
+            icon="M6 7 H 20 L 26 12 V 26 H 6 L 6 7 M20 7 L20 12 L26 12 M11 13 L 16 13 M11 17 L 21 17 M11 21 L 21 21"
+            width="200"
+            height="500"
+            version="0.01"
+            revision="00571"
+          >
+            <Notes />
+          </Widget>
         </div>
       </div>
     );

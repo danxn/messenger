@@ -9,9 +9,9 @@ import './index.css';
 const styles = (theme) => ({
   root: {
     position: 'relative',
-    width: 150,
-    height: 150,
-    margin: '15px auto',
+    width: 170,
+    height: 170,
+    margin: '10px auto',
     '& canvas': {
       position: 'absolute',
       top: 0,
@@ -55,7 +55,7 @@ class Cube extends Component {
   }
 
   componentDidMount() {
-    // this.delay(3200).then(() => this.start());
+    this.delay(3200).then(() => this.start());
   }
 
   delay(ms) {
@@ -75,7 +75,7 @@ class Cube extends Component {
     this.camera = new window.THREE.PerspectiveCamera(75, 100 / 100, 1, 10000);
 
     this.renderer = new window.THREE.WebGLRenderer({ alpha: true });
-    this.renderer.setSize(150, 150);
+    this.renderer.setSize(170, 170);
     this.dom.appendChild(this.renderer.domElement);
 
     this.geometry = new window.THREE.BoxGeometry(100, 100, 100, 2, 2, 2);
