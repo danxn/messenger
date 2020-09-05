@@ -1,5 +1,7 @@
 # messenger
 
+`git checkout chat`
+
 ## Install
 
 `yarn install`
