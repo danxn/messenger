@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Vector from './components/Vector';
+import Chat from './components/Chat';
 
 function App() {
   return (
     <main className="App">
-      <Vector />
+      <Chat />
     </main>
   );
 }
