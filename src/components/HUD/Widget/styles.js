@@ -149,7 +149,7 @@ export default class Style {
         textOverflow: 'ellipsis',
         '& .символ': {
           color: '#000',
-          fontSize: 21,
+          fontSize: 19,
           lineHeight: '31px',
           fontWeight: 700,
           fontFamily: 'Orbitron',

@@ -191,7 +191,7 @@ export default class Animate {
     this.headerTimeline.to(this.r.заголовок.childNodes, 0.25, {
       opacity: 1,
       color: '#fff',
-      fontSize: 21,
+      fontSize: 19,
       yoyo: true,
       repeat: 0,
       ease: 'power1.inOut',
