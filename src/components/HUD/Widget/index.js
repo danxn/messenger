@@ -1,9 +1,9 @@
 /*eslint no-extra-bind: "off"*/
-import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
+import React, { Component } from 'react';
 import Animate from './animation.js';
-import UILogic from './uilogic.js';
 import Style from './styles.js';
+import UILogic from './uilogic.js';
 
 const styles = (theme) => Style.classes();
 
@@ -31,7 +31,7 @@ class Widget extends Component {
   async componentDidMount() {
     this.createAnimation();
     this.delay(1).then(() => this.initUIElements());
-    this.delay(500).then(() => this.initUIElements());
+    this.delay(1000).then(() => this.initUIElements());
   }
 
   delay(ms) {
@@ -263,7 +263,7 @@ class Widget extends Component {
           >
             <div className="маркер"></div>
             <div>
-              Demo Model <span className="тег">v{this.props.version}</span>
+              Demo HUD <span className="тег">v{this.props.version}</span>
             </div>
             <div className="подзаголовок">{this.props.title}</div>
           </div>

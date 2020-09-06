@@ -92,7 +92,9 @@ export default class Animate {
         this.r.обводка.style.strokeDasharray = Obj.size * 1.5 + ' 2000';
         this.r.подпись.style.opacity = Obj.o;
       }.bind(this),
-      onComplete: function () {}.bind(this),
+      onComplete: function () {
+        this.r.текстПодписи.style.display = 'none';
+      }.bind(this),
     });
 
     this.frameTimeline.to(Obj, 0.5, {
@@ -120,6 +122,7 @@ export default class Animate {
         this.r.рамкаПиктограммы1.style.opacity = 0;
         this.r.рамкаПиктограммы2.style.opacity = 1;
         this.r.контейнерСодержания.style.overflow = 'hidden';
+        this.r.текстПодписи.style.display = 'inline-block';
         this.delay(250).then(() => this.openSoundAudio.play());
       }.bind(this),
       onUpdate: function () {
@@ -180,6 +183,7 @@ export default class Animate {
       }.bind(this),
       onComplete: function () {
         this.r.содержание.style.opacity = '1';
+        if (this.props.onOpenComplete) this.props.onOpenComplete();
       }.bind(this),
     });
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Vector from './components/Vector';
+import HUD from './components/HUD';
 
 function App() {
   return (
     <main className="App">
-      <Vector />
+      <HUD />
     </main>
   );
 }

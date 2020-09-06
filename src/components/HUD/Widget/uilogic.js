@@ -7,8 +7,6 @@ export default class UILogic {
   static init() {
     const titleWidth = this.r.текстПодписи.offsetWidth;
 
-    console.log(titleWidth);
-
     this.setState({ titleWidth: titleWidth + 60 }, () => {
       this.r.корневой.style.width = this.state.titleWidth + 'px';
       this.r.контейнерСодержания.style.width = this.state.titleWidth + 'px';

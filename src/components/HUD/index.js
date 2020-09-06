@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import Background from './bg_1_1440x900.jpg';
 import './index.css';
 import Widget from './Widget';
-import Cube from './Cube';
-import Notes from './Notes';
+import Notes from '../../containers/Notes';
+import View3D from '../../containers/3DView';
 
 const styles = (theme) => ({
   root: {
@@ -45,7 +45,7 @@ const styles = (theme) => ({
     marginBottom: 40,
     marginTop: 0,
     textTransform: 'uppercase',
-    letterSpacing: '3.6px',
+    letterSpacing: '2.5px',
     textIndent: 0,
   },
 });
@@ -69,7 +69,7 @@ class Vector extends Component {
 
     return (
       <div className={classes.root}>
-        <p className={classes.para2}>DEMO MODEL v0.01</p>
+        <p className={classes.para2}>DEMO HUD v0.01</p>
         <p className={classes.para3}>
           <span
             style={{
@@ -93,32 +93,8 @@ class Vector extends Component {
             version="0.01"
             revision="00571"
           />
-          <Widget
-            title="3D View"
-            icon="M16 6 L26 12 L16 18 L6 12 L16 6 M26 12 L26 20 L16 26 L6 20 L6 12 M16 18 L16 26"
-            width="200"
-            height="200"
-            version="0.01"
-            revision="00571"
-          >
-            <Cube
-              framed={false}
-              delay={800}
-              ref={(cube) => {
-                this.contentCube = cube;
-              }}
-            />
-          </Widget>
-          <Widget
-            title="Notes"
-            icon="M6 7 H 20 L 26 12 V 26 H 6 L 6 7 M20 7 L20 12 L26 12 M11 13 L 16 13 M11 17 L 21 17 M11 21 L 21 21"
-            width="200"
-            height="500"
-            version="0.01"
-            revision="00571"
-          >
-            <Notes />
-          </Widget>
+          <View3D />
+          <Notes />
         </div>
       </div>
     );

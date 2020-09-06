@@ -51,11 +51,13 @@ class Cube extends Component {
     this.sound2 = new Audio(sound2);
 
     this.animate = this.animate.bind(this);
-    this.start = this.start.bind(this);
+    this.animateContent = this.animateContent.bind(this);
   }
 
   componentDidMount() {
-    this.delay(3200).then(() => this.start());
+    if (this.props.delay) {
+      this.delay(3200).then(() => this.animateContent());
+    }
   }
 
   delay(ms) {
@@ -64,10 +66,10 @@ class Cube extends Component {
     });
   }
 
-  start() {
-    console.log('[CUBE]');
+  animateContent() {
+    //console.log('[CUBE]');
     this.delay(0).then(() => this.sound2.play());
-    this.delay(300).then(() => this.animate());
+    this.delay(200).then(() => this.animate());
   }
 
   animate() {
@@ -164,7 +166,8 @@ class Cube extends Component {
 
     render();
 
-    let t = this.props.delay;
+    // let t = this.props.delay;
+    let t = 300;
     let inc = 20;
     let count = 0;
     while (count < 7) {
@@ -224,7 +227,8 @@ class Cube extends Component {
           count++;
         }
       }, 5000);
-    }, this.props.delay);
+    }, 1000);
+    // }, this.props.delay);
   }
 
   render() {
