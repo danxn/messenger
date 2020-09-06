@@ -58,14 +58,14 @@ export default class Animate {
           active: false,
           switching: false,
         });
-        console.log('start');
+        this.r.обводка.style.opacity = 1;
       }.bind(this),
       onReverseComplete: function () {
         this.setState({
           active: false,
           switching: false,
         });
-        console.log('reverse complete');
+        this.r.обводка.style.opacity = 0;
       }.bind(this),
       onUpdate: function () {
         if (

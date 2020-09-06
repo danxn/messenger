@@ -58,6 +58,7 @@ export default class Style {
         strokeDasharray: '0 2000',
         stroke: '#fff',
         strokeWidth: 1.5,
+        opacity: 0,
         fill: 'transparent',
       },
       уголОбводки: {
@@ -149,7 +150,7 @@ export default class Style {
         '& .символ': {
           color: '#000',
           fontSize: 21,
-          lineHeight: '29px',
+          lineHeight: '31px',
           fontWeight: 700,
           fontFamily: 'Orbitron',
           opacity: 0,
