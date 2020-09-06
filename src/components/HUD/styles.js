@@ -13,7 +13,9 @@ export default class Style {
       },
       topBlock: {
         paddingLeft: 40,
-        height: 350,
+        // height: 350,
+        opacity: 0,
+        transition: 'opacity 1s',
       },
       para: {
         fontFamily: 'Electrolize',

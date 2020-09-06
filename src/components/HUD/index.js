@@ -15,13 +15,19 @@ class HUD extends Component {
     this.state = {
       displayWidgets: false,
     };
+
+    this.r = {};
   }
 
   componentDidMount() {
     console.log('[GSAP] Loading...', window['gsap']);
     console.log('[THREE] Loading...', window['THREE']);
     this.delay(1000).then(() => {
-      this.setState({ displayWidgets: true });
+      this.setState({ displayWidgets: true }, () => {
+        this.delay(500).then(() => {
+          this.r.topBlock.style.opacity = '1';
+        });
+      });
     });
   }
 
@@ -43,7 +49,12 @@ class HUD extends Component {
           <span className={classes.selection2}>Engeneering style</span>
           UI demo widgets
         </p>
-        <div className={classes.topBlock}>
+        <div
+          className={classes.topBlock}
+          ref={(div) => {
+            this.r.topBlock = div;
+          }}
+        >
           {this.state.displayWidgets && (
             <>
               <Description />
