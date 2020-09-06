@@ -18,7 +18,7 @@ class Note extends Component {
     this.r = {};
 
     this.typeSoundAudio = new Audio(typeSound);
-    this.typeSoundAudio.volume = '0.75';
+    this.typeSoundAudio.volume = '0.15';
 
     this.animateContent = this.animateContent.bind(this);
   }

@@ -14,11 +14,13 @@ class View3D extends Component {
 
     this.state = {
       widgetOpened: false,
+      widgetExpanded: false,
     };
 
     this.r = {};
 
     this.onWidgetOpen = this.onWidgetOpen.bind(this);
+    this.onWidgetClose = this.onWidgetClose.bind(this);
   }
 
   async componentDidMount() {}
@@ -30,11 +32,16 @@ class View3D extends Component {
   }
 
   onWidgetOpen() {
+    this.setState({ widgetExpanded: true });
     if (!this.state.widgetOpened) {
       this.setState({ widgetOpened: true }, () => {
         this.delay(100).then(() => this.r.cube.animateContent());
       });
     }
+  }
+
+  onWidgetClose() {
+    this.setState({ widgetExpanded: false });
   }
 
   render() {
@@ -47,10 +54,12 @@ class View3D extends Component {
         version="0.01"
         revision="00571"
         onOpenComplete={this.onWidgetOpen}
+        onCloseComplete={this.onWidgetClose}
       >
         <Cube
           framed={false}
           delay={0}
+          widgetExpanded={this.state.widgetExpanded}
           ref={(cube) => {
             this.r.cube = cube;
           }}

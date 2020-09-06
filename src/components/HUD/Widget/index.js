@@ -30,8 +30,7 @@ class Widget extends Component {
 
   async componentDidMount() {
     this.createAnimation();
-    this.delay(1).then(() => this.initUIElements());
-    this.delay(1000).then(() => this.initUIElements());
+    this.delay(100).then(() => this.initUIElements());
   }
 
   delay(ms) {

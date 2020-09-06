@@ -31,7 +31,7 @@ export default class Style {
         paddingLeft: '5px',
         paddingRight: '0px',
         lineHeight: '15px',
-        borderRadius: '3px',
+        borderRadius: '1px',
         marginRight: '5px',
         boxShadow: '0 0 3px #000',
         height: 16,

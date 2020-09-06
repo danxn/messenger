@@ -20,7 +20,7 @@ export default class Animate {
     };
 
     this.openSoundAudio = new Audio(openSound);
-    this.openSoundAudio.volume = '0.75';
+    this.openSoundAudio.volume = '0.55';
     this.openingSoundAudio = new Audio(openingSound);
     this.openingSoundAudio.volume = '0.75';
 
@@ -66,6 +66,7 @@ export default class Animate {
           switching: false,
         });
         this.r.обводка.style.opacity = 0;
+        if (this.props.onCloseComplete) this.props.onCloseComplete();
       }.bind(this),
       onUpdate: function () {
         if (

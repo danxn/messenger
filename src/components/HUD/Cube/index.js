@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/styles';
 
 import sound1 from '../beep-attention.mp3';
 import sound2 from '../xns60z_ui-137.wav';
+import sound3 from './xls0to_ui-124-part.wav';
 
 import './index.css';
 
@@ -20,6 +21,7 @@ const styles = (theme) => ({
     },
   },
   framed: { border: '1px dotted white!important' },
+  widgetExpanded: false,
 });
 
 class Cube extends Component {
@@ -49,6 +51,8 @@ class Cube extends Component {
 
     this.sound1 = new Audio(sound1);
     this.sound2 = new Audio(sound2);
+    this.sound3 = new Audio(sound3);
+    this.sound3.volume = '0.25';
 
     this.animate = this.animate.bind(this);
     this.animateContent = this.animateContent.bind(this);
@@ -58,6 +62,10 @@ class Cube extends Component {
     if (this.props.delay) {
       this.delay(3200).then(() => this.animateContent());
     }
+  }
+
+  componentDidUpdate() {
+    // console.log(this.props.widgetExpanded);
   }
 
   delay(ms) {
@@ -93,11 +101,11 @@ class Cube extends Component {
       opacity: 0.65,
       transparent: true,
     });
-    this.material3 = new window.THREE.MeshPhongMaterial({
-      color: new window.THREE.Color().setHSL(2 / 8, 1, 0.5),
-      opacity: 0.75,
-      transparent: true,
-    });
+    // this.material3 = new window.THREE.MeshPhongMaterial({
+    //   color: new window.THREE.Color().setHSL(2 / 8, 1, 0.5),
+    //   opacity: 0.75,
+    //   transparent: true,
+    // });
     this.material4 = new window.THREE.MeshPhongMaterial({
       color: new window.THREE.Color().setHSL(2 / 8, 0, 1),
       opacity: 0.75,
@@ -107,13 +115,10 @@ class Cube extends Component {
     this.scene.add(this.cube);
 
     this.cube2 = new window.THREE.Mesh(this.geometry, this.material2);
-    // this.scene.add(this.cube2);
 
     this.cube3 = new window.THREE.Mesh(this.geometry, this.material3);
 
     this.cube4 = new window.THREE.Mesh(this.geometry, this.material4);
-
-    //this.cube2.position.set(100, 100, 100);
 
     this.camera.position.z = 5000;
 
@@ -143,9 +148,9 @@ class Cube extends Component {
       that.cube2.rotation.y = that.ry;
       that.cube2.rotation.z = that.rz;
 
-      that.cube3.rotation.x = that.rx;
-      that.cube3.rotation.y = that.ry;
-      that.cube3.rotation.z = that.rz;
+      // that.cube3.rotation.x = that.rx;
+      // that.cube3.rotation.y = that.ry;
+      // that.cube3.rotation.z = that.rz;
 
       that.cube4.rotation.x = that.rx;
       that.cube4.rotation.y = that.ry;
@@ -170,29 +175,23 @@ class Cube extends Component {
     let t = 300;
     let inc = 20;
     let count = 0;
+    if (this.props.widgetExpanded) this.sound3.play();
+    this.delay(3300 + 20 * 7).then(() => {
+      if (this.props.widgetExpanded) this.sound3.play();
+    });
     while (count < 7) {
-      setTimeout(() => {
-        this.scene.add(this.cube4);
-      }, (t += inc));
-      setTimeout(() => {
-        this.scene.remove(this.cube4);
-      }, (t += inc));
+      this.delay((t += inc)).then(() => this.scene.add(this.cube4));
+      this.delay((t += inc)).then(() => this.scene.remove(this.cube4));
       count++;
     }
-    setTimeout(() => {
+    this.delay((t += inc)).then(() => {
       this.scene.add(this.cube2);
-    }, (t += inc));
-    setTimeout(() => {
-      this.scene.remove(this.cube2);
-    }, (t += 3000));
+    });
+    this.delay((t += 3000)).then(() => this.scene.remove(this.cube2));
     count = 0;
     while (count < 7) {
-      setTimeout(() => {
-        this.scene.add(this.cube4);
-      }, (t += inc));
-      setTimeout(() => {
-        this.scene.remove(this.cube4);
-      }, (t += inc));
+      this.delay((t += inc)).then(() => this.scene.add(this.cube4));
+      this.delay((t += inc)).then(() => this.scene.remove(this.cube4));
       count++;
     }
 
@@ -201,32 +200,26 @@ class Cube extends Component {
         let t = 100;
         let inc = 20;
         let count = 0;
+        if (this.props.widgetExpanded) this.sound3.play();
+        this.delay(3100 + 20 * 7).then(() => {
+          if (this.props.widgetExpanded) this.sound3.play();
+        });
         while (count < 7) {
-          setTimeout(() => {
-            this.scene.add(this.cube4);
-          }, (t += inc));
-          setTimeout(() => {
-            this.scene.remove(this.cube4);
-          }, (t += inc));
+          this.delay((t += inc)).then(() => this.scene.add(this.cube4));
+          this.delay((t += inc)).then(() => this.scene.remove(this.cube4));
           count++;
         }
-        setTimeout(() => {
+        this.delay((t += inc)).then(() => {
           this.scene.add(this.cube2);
-        }, (t += inc));
-        setTimeout(() => {
-          this.scene.remove(this.cube2);
-        }, (t += 3000));
+        });
+        this.delay((t += 3000)).then(() => this.scene.remove(this.cube2));
         count = 0;
         while (count < 7) {
-          setTimeout(() => {
-            this.scene.add(this.cube4);
-          }, (t += inc));
-          setTimeout(() => {
-            this.scene.remove(this.cube4);
-          }, (t += inc));
+          this.delay((t += inc)).then(() => this.scene.add(this.cube4));
+          this.delay((t += inc)).then(() => this.scene.remove(this.cube4));
           count++;
         }
-      }, 5000);
+      }, 7000);
     }, 1000);
     // }, this.props.delay);
   }
