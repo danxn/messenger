@@ -228,7 +228,8 @@ class Widget extends Component {
           >
             <div className="маркер"></div>
             <div>
-              <span className="тег">Rev. {this.props.revision}</span> 04.09.2020
+              <span className="тег">Rev. {this.props.revision}</span>{' '}
+              {this.props.date}
             </div>
           </div>
           <div

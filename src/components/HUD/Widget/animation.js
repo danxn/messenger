@@ -20,9 +20,9 @@ export default class Animate {
     };
 
     this.openSoundAudio = new Audio(openSound);
-    this.openSoundAudio.volume = '0.55';
+    this.openSoundAudio.volume = '0.25';
     this.openingSoundAudio = new Audio(openingSound);
-    this.openingSoundAudio.volume = '0.75';
+    this.openingSoundAudio.volume = '0.25';
 
     this.frameTimeline = window['gsap'].timeline({
       ...setup,

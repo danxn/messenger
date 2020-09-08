@@ -2,9 +2,10 @@ import { withStyles } from '@material-ui/styles';
 import React, { Component } from 'react';
 import Style from './styles.js';
 
-import Notes from '../../containers/Notes';
-import View3D from '../../containers/3DView';
-import Description from '../../containers/Description';
+// import Notes from '../../containers/Notes';
+// import View3D from '../../containers/3DView';
+// import Description from '../../containers/Description';
+import Sensor from '../../containers/Sensor';
 
 const styles = (theme) => Style.classes(theme);
 
@@ -43,7 +44,7 @@ class HUD extends Component {
     return (
       <div className={classes.root}>
         <p className={classes.para2}>
-          Demo HUD <span className={classes.selection}>v0.01</span>
+          Demo HUD <span className={classes.selection}>v0.02</span>
         </p>
         <p className={classes.para3}>
           <span className={classes.selection2}>Engeneering style</span>
@@ -57,9 +58,11 @@ class HUD extends Component {
         >
           {this.state.displayWidgets && (
             <>
-              <Description />
+              <Sensor title="T° Sensor (Light)" theme="light" />
+              <Sensor title="T° Sensor (Dark)" theme="dark" />
+              {/* <Description />
               <View3D />
-              <Notes />
+              <Notes /> */}
             </>
           )}
         </div>

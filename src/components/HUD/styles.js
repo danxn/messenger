@@ -26,7 +26,7 @@ export default class Style {
       },
       para2: {
         paddingLeft: 40,
-        fontFamily: 'Saira Condensed', //'Orbitron',
+        fontFamily: 'Orbitron', //'Saira Condensed'
         fontSize: 38,
         color: '#fff',
         fontWeight: 700,
@@ -35,8 +35,8 @@ export default class Style {
         marginTop: 0,
       },
       para3: {
-        fontFamily: 'Orbitron',
-        fontSize: 10,
+        fontFamily: 'Saira Condensed', //'Orbitron',
+        fontSize: 11,
         color: '#fff',
         fontWeight: 100,
         textShadow: '1px 1px 2px #000',

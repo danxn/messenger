@@ -225,7 +225,7 @@ export default class Style {
         paddingTop: 5,
         paddingLeft: 40,
         paddingBottom: 5,
-        whiteSpace: 'no-wrap',
+        whiteSpace: 'nowrap',
       },
       текстПодписи: {
         '&:hover': {
