@@ -61,7 +61,11 @@ class Create extends Component {
             position: 'relative',
             top: 0,
             left: 0,
-            border: '1px dotted #fff',
+            border: '0px dotted #fff',
+            margin: '25px auto',
+            display: 'block',
+            backgroundColor: 'rgba(200,200,200, 1)',
+            boxShadow: '1px 1px 5px rgba(0,0,0,.8)',
           }}
         ></canvas>
       </div>
