@@ -57,7 +57,7 @@ class Canvas extends Component {
     return (
       <Widget
         title={this.props.title}
-        icon="M8 14 C 8 6, 24 6, 24 14 V18 C 24 26, 8 26, 8 18 V14 C 8 22, 24 22, 24 14 C24 22, 8 22, 8 14 Z"
+        icon="M10 14 C 8 4, 24 4, 22 14 L19 20 V24 L18 26 H14 L13 24 V20 L10 14 L13 20 V22 H18 M16 22 V15 H15 H17"
         width="800"
         height="250"
         version="0.02"
