@@ -189,20 +189,12 @@ class TemperatureSensor extends Component {
       }.bind(this),
       onComplete: function () {
         this.schemaTimeline.play();
+        this.r.sensorOutline.style.opacity = 1;
+        this.r.valueBG.style.opacity = 1;
+        this.r.sensorText.style.opacity = 1;
         if (this.props.onDisplayngComplete) this.props.onDisplayngComplete();
       }.bind(this),
     });
-    // this.frameTimeline.to(Obj, 2, {
-    //   strokeSize2: 250,
-    //   onStart: function () {
-    //     this.animateText();
-    //   }.bind(this),
-    //   onReverseComplete: function () {}.bind(this),
-    //   onUpdate: function () {
-    //     this.r.sideLine.style.strokeDasharray = Obj.strokeSize2 + ' 2000';
-    //   }.bind(this),
-    //   onComplete: function () {}.bind(this),
-    // });
 
     this.headerTimeline.to(this.r.header.childNodes, 0.25, {
       opacity: 1,
@@ -324,6 +316,10 @@ class TemperatureSensor extends Component {
             stroke={this.r.schemaColor}
             fill="transparent"
             strokeWidth="2.5"
+            style={{ opacity: 0, transition: 'opacity 1.5s' }}
+            ref={(circle) => {
+              this.r.sensorOutline = circle;
+            }}
           />
           <rect
             x="65" //x="30"
@@ -335,85 +331,93 @@ class TemperatureSensor extends Component {
             stroke="rgba(255,0,0,.9)"
             fill="rgba(255,0,0,.7)"
             strokeWidth="2px"
+            style={{ opacity: 0, transition: 'opacity 1.5s' }}
             ref={(rect) => {
               this.r.valueBG = rect;
             }}
           ></rect>
         </svg>
         <div
-          style={{
-            position: 'absolute',
-            top: 90,
-            left: 30,
-            width: 140,
-            height: 20, //40
-            lineHeight: '40px',
-            fontFamily: 'Orbitron', //'Saira Condensed',
-            fontSize: '14px', //'28px',
-            fontWeight: 700,
-            color: this.r.valueColor,
-            textAlign: 'center',
-          }}
           ref={(div) => {
-            this.r.value = div;
+            this.r.sensorText = div;
           }}
+          style={{ opacity: 0, transition: 'opacity 1.5s' }}
         >
-          50.4 °C
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: 47,
-            left: 30,
-            width: 30,
-            height: 30,
-            fontFamily: 'Saira Condensed',
-            fontSize: '30px',
-            fontWeight: 500,
-            color: this.r.schemaColor,
-          }}
-        >
-          20
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: 70,
-            left: 50,
-            width: 100,
-            height: 30,
-            fontFamily: 'Saira Condensed',
-            fontSize: '30px',
-            lineHeight: '30px',
-            fontWeight: 500,
-            textAlign: 'center',
-            color: this.r.schemaColor,
-          }}
-          ref={(div) => {
-            this.r.topCaption = div;
-          }}
-        >
-          TT
-        </div>
-        <div
-          style={{
-            position: 'absolute',
-            top: 120,
-            left: 50,
-            width: 100,
-            height: 30,
-            fontFamily: 'Saira Condensed',
-            fontSize: '30px',
-            lineHeight: '30px',
-            fontWeight: 500,
-            textAlign: 'center',
-            color: this.r.schemaColor,
-          }}
-          ref={(div) => {
-            this.r.bottomCaption = div;
-          }}
-        >
-          1062
+          <div
+            style={{
+              position: 'absolute',
+              top: 90,
+              left: 30,
+              width: 140,
+              height: 20, //40
+              lineHeight: '40px',
+              fontFamily: 'Orbitron', //'Saira Condensed',
+              fontSize: '14px', //'28px',
+              fontWeight: 700,
+              color: this.r.valueColor,
+              textAlign: 'center',
+            }}
+            ref={(div) => {
+              this.r.value = div;
+            }}
+          >
+            50.4 °C
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              top: 47,
+              left: 30,
+              width: 30,
+              height: 30,
+              fontFamily: 'Saira Condensed',
+              fontSize: '30px',
+              fontWeight: 500,
+              color: this.r.schemaColor,
+            }}
+          >
+            20
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              top: 70,
+              left: 50,
+              width: 100,
+              height: 30,
+              fontFamily: 'Saira Condensed',
+              fontSize: '30px',
+              lineHeight: '30px',
+              fontWeight: 500,
+              textAlign: 'center',
+              color: this.r.schemaColor,
+            }}
+            ref={(div) => {
+              this.r.topCaption = div;
+            }}
+          >
+            TT
+          </div>
+          <div
+            style={{
+              position: 'absolute',
+              top: 120,
+              left: 50,
+              width: 100,
+              height: 30,
+              fontFamily: 'Saira Condensed',
+              fontSize: '30px',
+              lineHeight: '30px',
+              fontWeight: 500,
+              textAlign: 'center',
+              color: this.r.schemaColor,
+            }}
+            ref={(div) => {
+              this.r.bottomCaption = div;
+            }}
+          >
+            1062
+          </div>
         </div>
         <h4
           className={classes.superHeader}
