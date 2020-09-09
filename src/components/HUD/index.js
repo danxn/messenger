@@ -2,10 +2,11 @@ import { withStyles } from '@material-ui/styles';
 import React, { Component } from 'react';
 import Style from './styles.js';
 
-// import Notes from '../../containers/Notes';
-// import View3D from '../../containers/3DView';
-// import Description from '../../containers/Description';
+import Notes from '../../containers/Notes';
+import View3D from '../../containers/3DView';
+import Description from '../../containers/Description';
 import Sensor from '../../containers/Sensor';
+import Canvas from '../../containers/Canvas';
 
 const styles = (theme) => Style.classes(theme);
 
@@ -50,22 +51,27 @@ class HUD extends Component {
           <span className={classes.selection2}>Engeneering style</span>
           UI demo widgets
         </p>
-        <div
-          className={classes.topBlock}
-          ref={(div) => {
-            this.r.topBlock = div;
-          }}
-        >
-          {this.state.displayWidgets && (
-            <>
+        {this.state.displayWidgets && (
+          <div
+            className={classes.topBlock}
+            ref={(div) => {
+              this.r.topBlock = div;
+            }}
+          >
+            <div>
+              <Canvas title="Canvas animated UI" />
+            </div>
+            <div>
               <Sensor title="T° Sensor (Light)" theme="light" />
               <Sensor title="T° Sensor (Dark)" theme="dark" />
-              {/* <Description />
+            </div>
+            <div>
+              <Description />
               <View3D />
-              <Notes /> */}
-            </>
-          )}
-        </div>
+              <Notes />
+            </div>
+          </div>
+        )}
       </div>
     );
   }
