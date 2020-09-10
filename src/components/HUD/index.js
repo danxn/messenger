@@ -45,7 +45,7 @@ class HUD extends Component {
     return (
       <div className={classes.root}>
         <p className={classes.para2}>
-          Demo HUD <span className={classes.selection}>v0.02</span>
+          Demo HUD <span className={classes.selection}>v0.03</span>
         </p>
         <p className={classes.para3}>
           <span className={classes.selection2}>Engeneering style</span>

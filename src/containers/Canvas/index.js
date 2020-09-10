@@ -60,7 +60,7 @@ class Canvas extends Component {
         icon="M10 14 C 8 4, 24 4, 22 14 L19 20 V24 L18 26 H14 L13 24 V20 L10 14 L13 20 V22 H18 M16 22 V15 H15 H17"
         width="800"
         height="250"
-        version="0.02"
+        version="0.03"
         revision="00031"
         date="08.09.2020"
         onOpenComplete={this.onWidgetOpen}
