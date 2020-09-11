@@ -60,6 +60,7 @@ class HUD extends Component {
           >
             <div>
               <Canvas title="Canvas animated UI" />
+              <Notes icon="M16 6 L26 12 L16 18 L6 12 L16 6 M26 12 L26 20 L16 26 L6 20 L6 12 M16 18 L16 26" />
             </div>
             <div>
               <Sensor title="T° Sensor (Light)" theme="light" />

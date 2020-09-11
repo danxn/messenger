@@ -336,12 +336,8 @@ export default class Animate {
             paused: true,
           })
             .wait(3500)
-            .to({ alpha: 0.35 }, 250, this.cj.Ease.getPowInOut(2))
-            .to(
-              { alpha: 0.65, rotation: 90 },
-              500,
-              this.cj.Ease.getPowInOut(2)
-            );
+            .to({ alpha: 0.3 }, 250, this.cj.Ease.getPowInOut(2))
+            .to({ alpha: 0.6, rotation: 90 }, 500, this.cj.Ease.getPowInOut(2));
           this.c.tween8.on('complete', () => {
             this.setState({ completed: true });
           });
@@ -374,4 +370,8 @@ export default class Animate {
     this.c.tween1.paused = false;
     this.c.tween.paused = false;
   }
+
+  static c;
+  static cj;
+  static setState;
 }
