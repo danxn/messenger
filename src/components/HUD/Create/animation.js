@@ -50,8 +50,10 @@ export default class Animate {
         this.c.settingsIcon.alpha = 0.0;
         this.c.settingsIcon.scaleX = 0.1;
         this.c.settingsIcon.scaleY = 0.1;
-        this.c.settingsIcon.x = 224;
-        this.c.settingsIcon.y = 43;
+        this.c.settingsIcon.x = 237;
+        this.c.settingsIcon.y = 56;
+        this.c.settingsIcon.regX = 128;
+        this.c.settingsIcon.regY = 128;
 
         this.c.settingsIcon.shadow = new this.cj.Shadow(
           'rgba(0,0,0,.45)',
@@ -334,7 +336,12 @@ export default class Animate {
             paused: true,
           })
             .wait(3500)
-            .to({ alpha: 0.65 }, 500, this.cj.Ease.getPowInOut(2));
+            .to({ alpha: 0.35 }, 250, this.cj.Ease.getPowInOut(2))
+            .to(
+              { alpha: 0.65, rotation: 180 },
+              500,
+              this.cj.Ease.getPowInOut(2)
+            );
           this.c.tween8.on('complete', () => {
             this.setState({ completed: true });
           });
