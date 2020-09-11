@@ -338,7 +338,7 @@ export default class Animate {
             .wait(3500)
             .to({ alpha: 0.35 }, 250, this.cj.Ease.getPowInOut(2))
             .to(
-              { alpha: 0.65, rotation: 180 },
+              { alpha: 0.65, rotation: 90 },
               500,
               this.cj.Ease.getPowInOut(2)
             );
