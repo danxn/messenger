@@ -77,16 +77,16 @@ export default class Animate {
 
     topCaption: {
       this.c.topCaption = new this.cj.Text(
-        'VALVE',
-        '800 16px Orbitron',
+        'SWITCH',
+        '800 15px Orbitron',
         'rgba(255,255,255,.8)'
       );
       this.c.topCaption.shadow = new this.cj.Shadow('rgba(0,0,0,.9)', 3, 3, 5);
       this.c.topCaption._size = 35;
       this.c.topCaption._weight = 300;
       this.c.topCaption.alpha = 0;
-      this.c.topCaption.x = 370.5;
-      this.c.topCaption.y = 25.5;
+      this.c.topCaption.x = 372.5;
+      this.c.topCaption.y = 24.5;
       this.c.topCaption.textAlign = 'center';
       this.c.topCaption.textBaseline = 'alphabetic';
       this.c.stage.addChild(this.c.topCaption);
