@@ -98,7 +98,7 @@ export default class Animate {
       this.c.rect2.shape = this.c.rect2.graphics
         .setStrokeStyle(1, 'round')
         .beginStroke('rgba(230,230,230,1)')
-        .beginFill('rgba(255,255,255,0)')
+        .beginFill('rgba(0,255,0,.10)')
         .drawRect(331.5, 29.5, 80, 12).command;
       this.c.rect2.alpha = 0;
       this.c.stage.addChild(this.c.rect2);
