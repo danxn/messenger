@@ -18,6 +18,8 @@ export default class Animate {
 
     var fadeDelay = 500;
     var fadeTime = 500;
+    var fadeDelay2 = 1500;
+    var fadeTime2 = 500;
     var moveDelay = 500;
     var moveTime = 5000;
 
@@ -34,18 +36,6 @@ export default class Animate {
         }
       }
       this.c.stage.addChild(this.c.grid);
-      this.c.stage.update();
-    }
-
-    rect: {
-      this.c.rect = new this.cj.Shape();
-      this.c.rect.shape = this.c.rect.graphics
-        .setStrokeStyle(1, 'round')
-        .beginStroke('rgba(230,230,230,1)')
-        .beginFill('rgba(255,255,255,.3)')
-        .drawRect(331.5, 9.5, 80, 20).command;
-      this.c.rect.alpha = 0;
-      this.c.stage.addChild(this.c.rect);
       this.c.stage.update();
     }
 
@@ -73,10 +63,22 @@ export default class Animate {
       this.c.stage.update();
     }
 
+    rect: {
+      this.c.rect = new this.cj.Shape();
+      this.c.rect.shape = this.c.rect.graphics
+        .setStrokeStyle(1, 'round')
+        .beginStroke('rgba(230,230,230,1)')
+        .beginFill('rgba(255,255,255,.4)')
+        .drawRect(331.5, 9.5, 80, 20).command;
+      this.c.rect.alpha = 0;
+      this.c.stage.addChild(this.c.rect);
+      this.c.stage.update();
+    }
+
     topCaption: {
       this.c.topCaption = new this.cj.Text(
         'VALVE',
-        '700 16px Orbitron',
+        '800 16px Orbitron',
         'rgba(255,255,255,.8)'
       );
       this.c.topCaption.shadow = new this.cj.Shadow('rgba(0,0,0,.9)', 3, 3, 5);
@@ -88,6 +90,41 @@ export default class Animate {
       this.c.topCaption.textAlign = 'center';
       this.c.topCaption.textBaseline = 'alphabetic';
       this.c.stage.addChild(this.c.topCaption);
+      this.c.stage.update();
+    }
+
+    rect2: {
+      this.c.rect2 = new this.cj.Shape();
+      this.c.rect2.shape = this.c.rect2.graphics
+        .setStrokeStyle(1, 'round')
+        .beginStroke('rgba(230,230,230,1)')
+        .beginFill('rgba(255,255,255,0)')
+        .drawRect(331.5, 29.5, 80, 12).command;
+      this.c.rect2.alpha = 0;
+      this.c.stage.addChild(this.c.rect2);
+      this.c.stage.update();
+    }
+
+    bottomCaption: {
+      this.c.bottomCaption = new this.cj.Text(
+        'status: ON',
+        '700 10px Orbitron',
+        'rgba(255,255,255,.8)'
+      );
+      this.c.bottomCaption.shadow = new this.cj.Shadow(
+        'rgba(0,0,0,.9)',
+        3,
+        3,
+        5
+      );
+      this.c.bottomCaption._size = 35;
+      this.c.bottomCaption._weight = 300;
+      this.c.bottomCaption.alpha = 0;
+      this.c.bottomCaption.x = 370.5;
+      this.c.bottomCaption.y = 38.5;
+      this.c.bottomCaption.textAlign = 'center';
+      this.c.bottomCaption.textBaseline = 'alphabetic';
+      this.c.stage.addChild(this.c.bottomCaption);
       this.c.stage.update();
     }
 
@@ -132,6 +169,22 @@ export default class Animate {
           .wait(fadeDelay)
           .to({ alpha: 1 }, fadeTime, this.cj.Ease.getPowInOut(4));
       }
+      rect2: {
+        this.c.tween05 = this.cj.Tween.get(this.c.rect2, {
+          loop: false,
+          paused: true,
+        })
+          .wait(fadeDelay2)
+          .to({ alpha: 1 }, fadeTime2, this.cj.Ease.getPowInOut(4));
+      }
+      caption2: {
+        this.c.tween06 = this.cj.Tween.get(this.c.bottomCaption, {
+          loop: false,
+          paused: true,
+        })
+          .wait(fadeDelay2)
+          .to({ alpha: 1 }, fadeTime2, this.cj.Ease.getPowInOut(4));
+      }
       line: {
         this.c.tween1 = this.cj.Tween.get(this.c.line.shape, {
           loop: false,
@@ -160,6 +213,8 @@ export default class Animate {
     this.c.tween02.paused = false;
     this.c.tween03.paused = false;
     this.c.tween04.paused = false;
+    this.c.tween05.paused = false;
+    this.c.tween06.paused = false;
     this.c.tween1.paused = false;
     this.c.tween2.paused = false;
   }
