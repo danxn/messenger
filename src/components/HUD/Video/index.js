@@ -83,6 +83,7 @@ class Video extends Component {
             top: 20,
             left: 32,
             boxShadow: '1px 1px 5px rgba(0,0,0,.8)',
+            outline: '0px',
           }}
           ref={(video) => {
             this.r.video = video;
